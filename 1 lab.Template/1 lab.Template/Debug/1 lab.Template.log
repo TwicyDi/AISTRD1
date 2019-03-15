@@ -1,0 +1,8 @@
+﻿  1 lab.Template.cpp
+c:\users\диана\desktop\все\учеба\алгоритмы и структуры данных\4 семестр\1 lab.template\1 lab.template\1 lab.template.cpp(56): warning C4018: >=: несоответствие типов со знаком и без знака
+c:\users\диана\desktop\все\учеба\алгоритмы и структуры данных\4 семестр\1 lab.template\1 lab.template\1 lab.template.cpp(40): warning C4101: index1: неиспользованная локальная переменная
+c:\users\диана\desktop\все\учеба\алгоритмы и структуры данных\4 семестр\1 lab.template\1 lab.template\1 lab.template.cpp(53): warning C4101: error: неиспользованная локальная переменная
+  Создание кода...
+  Пропуск... (изменения не обнаружены)
+  LinkedList.cpp
+  1 lab.Template.vcxproj -> C:\Users\Диана\Desktop\все\учеба\алгоритмы и структуры данных\4 семестр\1 lab.Template\Debug\1 lab.Template.exe
