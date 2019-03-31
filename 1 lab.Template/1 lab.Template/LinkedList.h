@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Iterator.h"
 
 template <typename T>
 class LinkedList
@@ -26,15 +27,36 @@ private:
 		Node *prev;
 	};
 	void reset_list();
-
+	size_t size;
 	Node *head;
 	Node *tail;
 	
+class ListIterator : public Iterator<T>
+	{
+	public:
+		ListIterator(Node *head) { current = head; };
+	private:
+		T next() override;
+		bool has_next() override;
+		Node* current;
+	};
 
+	Iterator<T>* create_list_iterator();
+	friend std::ostream& operator<<(std::ostream& os, LinkedList<T>& linked_list) {
+		if (linked_list.size == 0)
+			return os << "[nullptr]";
+		auto* list = linked_list.create_list_iterator();
+		os << "[nullptr] <-> ";
+		while (list->has_next()) {
+			os << "[" << list->next() << "] <-> ";
+		}
+		os << "[nullptr]" << std::endl;
+		return os;
+	};
+	
 public:
 	LinkedList();
 	~LinkedList();
-	size_t size;
 	void push_back(T newElem); //add a new element into the end of the list
 	void push_front(T newElem); //add a new element into the beginning of the list
 	void pop_back(); //delete the element from the end of the list
