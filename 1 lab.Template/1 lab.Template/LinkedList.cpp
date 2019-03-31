@@ -56,7 +56,7 @@ void LinkedList<T>::push_front(T newElem)
 template <class T>
 void LinkedList<T>::pop_back()
 {
-	if (size == 0) cout << "\nList is empty\n";
+	if (size == 0) return;
 	if (size == 1) {
 		delete tail; 
 		size--;
