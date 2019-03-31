@@ -223,10 +223,7 @@ void LinkedList<T>::set(size_t index, T newElem)
 template <class T>
 bool LinkedList<T>::isEmpty()
 {
-	bool check = false;
-	if (size == 0)
-		check = true;
-	return check;
+	return (size == 0 ?  1 :  0);
 }
 
 template<typename T>
