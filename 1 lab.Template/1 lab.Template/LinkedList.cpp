@@ -29,15 +29,10 @@ void LinkedList<T>::push_back(T newElem)
 	if (size == 0) {
 		head = new Node(newElem);
 		tail = head;
-		head->next = nullptr;
-		head->prev = nullptr;
-		tail->next = nullptr;
-		tail->prev = nullptr;
 	}
 	else {
 		tail->next = new Node(newElem);
 		tail->next->prev = tail;
-		tail->next->next = nullptr;
 		tail = tail->next;
 	}
 	size++;
@@ -49,13 +44,10 @@ void LinkedList<T>::push_front(T newElem)
 	if (size == 0) {
 		head = new Node(newElem);
 		tail = head;
-		head->next = nullptr;
-		head->prev = nullptr;
 	}
 	else {
 		head->prev = new Node(newElem);
 		head->prev->next = head;
-		head->prev->prev = nullptr;
 		head = head->prev;
 	}
 	size++;
@@ -66,14 +58,13 @@ void LinkedList<T>::pop_back()
 {
 	if (size == 0) cout << "\nList is empty\n";
 	if (size == 1) {
-		delete tail; tail = head = nullptr;
+		delete tail; 
 		size--;
 	}
 	if (size > 1) {
 		if (tail->prev != nullptr)
 			tail = tail->prev;
 		delete tail->next;
-		tail->next = nullptr;
 		size--;
 	}
 }
@@ -107,10 +98,6 @@ void LinkedList<T>::insert(size_t index, T newElem)
 		{
 			head = new Node(newElem);
 			tail = head;
-			head->next = nullptr;
-			head->prev = nullptr;
-			tail->next = nullptr;
-			tail->prev = nullptr;
 			size++;
 		}
 
@@ -143,7 +130,7 @@ void LinkedList<T>::insert(size_t index, T newElem)
 template <class T>
 T LinkedList<T>::at(size_t index)
 {
-	if (index >= size)
+	if (index >= size || index < 0)
 		throw out_of_range("Index is out of range");
 	else {
 		Node *current = head;
@@ -253,4 +240,26 @@ void LinkedList<T>::Print_List()
 	}
 	if (head == nullptr)
 		cout << "List is empty" << endl;
+}
+
+template <typename T>
+T LinkedList<T>::ListIterator::next()
+{
+	if (!current) return T();
+	const T data = current->data;
+	current = current->next;
+	return data;
+}
+
+template <class T>
+bool LinkedList<T>::ListIterator::has_next()
+{
+	return (current != nullptr);
+}
+
+template <class T>
+Iterator<T>* LinkedList<T>::create_list_iterator()
+{
+	if (this == nullptr && this->head == nullptr) throw std::exception("Does not exist");
+	return new ListIterator(this->head);
 }
